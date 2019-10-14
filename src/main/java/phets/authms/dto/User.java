@@ -4,17 +4,17 @@ package phets.authms.dto;
  *
  * @author jcgallegor
  */
-import javax.persistence.*;
+//import javax.persistence.*;
 
-@Entity
+/*@Entity
 @Table(name = "users")
-//@NamedQueries({@NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u")})
+@NamedQueries({@NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u")})*/
 public class User {
 
     //public static final String FIND_ALL = "User.findAll";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
     private int id;
 
     private String firstName;

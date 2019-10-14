@@ -1,0 +1,32 @@
+version: "2.1"
+services:
+  phets-auth-ms:
+    container_name: phets-auth-ms
+    build: .
+    ports:
+      - "4006:4006"
+    depends_on:
+      phets-auth-db:
+        condition: service_healthy
+    environment:
+      DATABASE_USER: authUser
+      DATABASE_PASS: AAbbCc.7
+      DATABASE_URI: 172.17.0.1:3006
+      DATABASE_NAME: auth
+  phets-auth-db:
+    image: mariadb:latest
+    container_name: phets-auth-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1q2w3e
+      MYSQL_DATABASE: auth
+      MYSQL_USER: authUser
+      MYSQL_PASSWORD: AAbbCc.7
+    ports:
+      - "3006:3306"
+    volumes:
+     - ${PWD}/mariadb:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      interval: 20s
+      timeout: 5s
+      retries: 15
